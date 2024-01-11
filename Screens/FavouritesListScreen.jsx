@@ -8,10 +8,11 @@ export const FavouritesListScreen = ({ navigation }) => {
   const favourites = useSelector(state => state.favourites.favourites);
 
   return (
-    <View style={{ height: '100%'}}>
+    <View style={styles.favouritesWrapper}>
       {favourites.length 
       ? (<FlatList
         data={favourites}
+        contentContainerStyle={{ padding: 10 }}
         style={styles.flatListContainer}
         renderItem={({ item }) => (
           <TouchableOpacity 
@@ -33,6 +34,10 @@ export const FavouritesListScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  favouritesWrapper: {
+    height: '100%',
+  },
+
   flatListContainer: {
     display: 'flex',
     gap: 20,

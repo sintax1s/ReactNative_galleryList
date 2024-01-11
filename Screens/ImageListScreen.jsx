@@ -35,6 +35,7 @@ export const ImageList = memo(({ navigation }) => {
       {status === 'rejected' && Alert.alert('Oops', 'Something went wrong, probably something with server, reload and try again')}
       {status === 'resolved' && (
         <FlatList
+          contentContainerStyle={{ padding: 10 }}
           refreshControl={
             <RefreshControl 
               refreshing={status === 'loading'} 
@@ -53,7 +54,7 @@ export const ImageList = memo(({ navigation }) => {
       <View style={styles.navBarContainer}>
         <View style={styles.paginationContainer}>
           <Button title="Previous Page" onPress={() => dispatch(handlePrevPage(page - 1))} disabled={page === 1} />
-          <Text>{`${page}`}</Text>
+          <Text>{page}</Text>
           <Button title="Next Page" onPress={() => dispatch(handleNextPage(page + 1))} />
         </View>
         <Icon.Button name="heart" backgroundColor="#be2c51" onPress={() => navigation.navigate('FavouritesListScreen')}>
@@ -65,6 +66,10 @@ export const ImageList = memo(({ navigation }) => {
 });
 
 const styles = StyleSheet.create({
+  imageListWrapper: {
+    height: '100%',
+  },
+
   flatListContainer: {
     display: 'flex',
     gap: 20,

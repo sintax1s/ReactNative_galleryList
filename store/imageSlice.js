@@ -8,6 +8,7 @@ export const getImages = createAsyncThunk(
   async function (page) {
     try {
       const response = await axios.get(`https://api.unsplash.com/photos/?client_id=${ACCESS_KEY}&per_page=20&page=${page}`);
+      
       return response.data; 
     } catch (error) {
       console.log(error);

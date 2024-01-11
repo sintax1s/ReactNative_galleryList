@@ -11,12 +11,12 @@ export const ImageItem = ({ img, title, avatarImg, name}) => {
 
   return (
     <View style={styles.imageItem}>
-      <Image source={{uri: img}} style={{ height: 400}}/>
-        <Text style={{ fontSize: 18, fontWeight: 700,}}>{title || 'No description'}</Text>
+      <Image source={{uri: img}} style={styles.mainImage}/>
+        <Text style={styles.descriptionText}>{title || 'No description'}</Text>
         <View style={styles.avatarView}>
           <Image source={ { uri: avatarImg}} style={styles.avatar}/>
-          <Text style={{ fontSize: 18, }}>{name}</Text>
-          <View style={{ marginLeft: 'auto' }}>
+          <Text style={styles.avatarName}>{name}</Text>
+          <View style={styles.favouritesWrapper}>
             <Icon.Button name='heart' backgroundColor="#be2c51" onPress={() => {
               if (!favourites.some(item => item.img === img)) {
                 dispatch(addToFavourites({ img, title, avatarImg, name}))
@@ -51,12 +51,20 @@ const styles = StyleSheet.create({
     backgroundColor : "#ebecf0"
   },
 
+  mainImage: {
+    height: 400,
+  },
+
   avatarView: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
+  },
 
+  descriptionText: {
+    fontSize: 18, 
+    fontWeight: 'bold',
   },
 
   avatar: {
@@ -64,4 +72,12 @@ const styles = StyleSheet.create({
     height: 35,
     borderRadius: 50,
   },
+
+  avatarName: {
+    fontSize: 18,
+  },
+
+  favouritesWrapper: {
+    marginLeft: 'auto',
+  }
 });
